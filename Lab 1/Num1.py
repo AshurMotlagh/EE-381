@@ -1,5 +1,4 @@
 
-
 import numpy as np
 import random
 import matplotlib
@@ -23,7 +22,7 @@ def nSidedDie(p):
 
     if flag:  # if the flag is true we will continue
         testcase = 10000
-        eList = []  #empty list to append to
+        eList = []  # empty list to append to
 
         cs = np.cumsum(p)  # Return the cumulative sum of the elements along a given axis.
         sp = np.append(0, cs)
@@ -31,7 +30,7 @@ def nSidedDie(p):
 
         for i in range(0, testcase):  # 0 - 10,000
             for j in range(0, length):  # 0 - size of p
-                if r > sp[i] and r <= sp[j + 1]:
+                if r > sp[j] and r <= sp[j + 1]:
                     d = j + 1
                     eList.append(d)
 
