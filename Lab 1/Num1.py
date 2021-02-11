@@ -1,4 +1,3 @@
-
 import numpy as np
 import random
 import matplotlib
@@ -24,7 +23,7 @@ def nSidedDie(p):
         testcase = 10000
         eList = []  # empty list to append to
 
-        cs = np.cumsum(p)  # Return the cumulative sum of the elements along a given axis.
+        cs = np.cumsum(p)  # Cumulative Sum
         sp = np.append(0, cs)
         r = random.random()
 
@@ -32,9 +31,20 @@ def nSidedDie(p):
             for j in range(0, length):  # 0 - size of p
                 if r > sp[j] and r <= sp[j + 1]:
                     d = j + 1
-                    eList.append(d)
+            eList.append(d)
 
-        b = range(1, length + 2); sb = np.size(b)
+        #I got most of the code below from the lab instructions
+        b = range(1, max(eList) + 2)
+        sb = np.size(b)
         h1, bin_edges = np.histogram(eList, bins=b)
+        b1 = bin_edges[0:sb - 1]
+        plt.close('all')
+        plt.figure(1)
+        plt.stem(b1, h1)
+        plt.title('n-sided die')
+        plt.xlabel('Face rolled')
+        plt.ylabel('# of times rolling the face')
+        plt.show()
 
-nSidedDie([0.10,  0.15,  0.20,  0.05,  0.30, 0.10, 0.10])
+
+nSidedDie([0.10, 0.15, 0.20, 0.05, 0.30, 0.10, 0.10])
