@@ -69,7 +69,7 @@ def passGuessing():
             print(2)
             elist = []
             continue
-        elif prob > .49 or prob < .51:
+        elif prob > .499 or prob < .51:
             break
 
     print(nums)

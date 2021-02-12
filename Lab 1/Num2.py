@@ -24,7 +24,8 @@ b1 = bin_edges[0:sb - 1]
 plt.close('all')
 
 plt.figure(1)
-plt.stem(b1, h1)
+p1 = h1 / 100000
+plt.stem(b1, p1)
 plt.title('Number of rolls needed to get a "7" with two dice')
 plt.xlabel('Number of rolls')
 plt.ylabel('Number of rolls it takes until you get a sum of "7"')
