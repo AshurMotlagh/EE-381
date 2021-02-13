@@ -17,7 +17,7 @@ while cnt < 100000:
         rollcnt = 0  # reset the counter
     cnt += 1  # this is to break out of the while loop
 
-b = range(1, 22)
+b = range(1, 25)
 sb = np.size(b)
 h1, bin_edges = np.histogram(eList, bins=b)
 b1 = bin_edges[0:sb - 1]
@@ -27,7 +27,7 @@ plt.figure(1)
 p1 = h1 / 100000
 plt.stem(b1, p1)
 plt.title('Number of rolls needed to get a "7" with two dice')
-plt.xlabel('Number of rolls')
-plt.ylabel('Number of rolls it takes until you get a sum of "7"')
+plt.xlabel('Number of rolls need to roll 7')
+plt.ylabel('probability')
 plt.xticks(b1)
 plt.show()

@@ -18,7 +18,7 @@ def passHacking1():
         if realPass in elist:
             succ += 1
 
-    print(succ/1000)
+    return(succ/1000)
 
 
 def passHacking2():
@@ -33,7 +33,7 @@ def passHacking2():
         if realPass in elist:
             succ += 1
 
-    print(succ/1000)
+    return(succ/1000)
 
 
 def passGuessing():
@@ -55,31 +55,30 @@ def passGuessing():
                 succ += 1.0
 
         prob = succ/1000.0
-        print(prob)
+        print(prob, "%")
 
-        if prob < .49:
+        if prob < .45:
             nums += 18000
             succ = 0.0
-            print(1)
+            print("adding 18000 words")
             elist = []
             continue
-        elif prob > .510:
+        elif prob > .55:
             nums = nums - 16000
-            succ =0.0
-            print(2)
+            succ = 0.0
+            print("subtracting 16000 words")
             elist = []
             continue
-        elif prob > .45 or prob < .55:  # margin of error of .05
+        elif prob >= .45 or prob <= .55:  # margin of error of .05
             break
 
-    print(nums)
+    print(nums, "words in list to get a probability of " , prob, "%")
 
 
 
 
-
-# print("Hacker creates m words:\nProb. that at least one of the words matches the password \np = ", passHacking1())
-# print("--------------------------------------------------------------------------------------------------------")
-# print("Hacker creates m*k words:\nProb. that at least one of the words matches the password \np = ", passHacking2())
-# print("--------------------------------------------------------------------------------------------------------")
+print("Hacker creates m words:\nProb. that at least one of the words matches the password \np = ", passHacking1() , "%")
+print("--------------------------------------------------------------------------------------------------------")
+print("Hacker creates m*k words:\nProb. that at least one of the words matches the password \np = ", passHacking2(), "%")
+print("--------------------------------------------------------------------------------------------------------")
 passGuessing()
