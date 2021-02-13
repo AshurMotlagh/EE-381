@@ -25,7 +25,6 @@ def nSidedDie(p):
 
         cs = np.cumsum(p)  # Cumulative Sum
         sp = np.append(0, cs)
-        # r = random.random()
 
         for i in range(0, testcase):  # 0 - 10,000
             r = random.random()
