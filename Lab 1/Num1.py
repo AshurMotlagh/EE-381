@@ -43,9 +43,9 @@ def nSidedDie(p):
         plt.figure(1)
         prob = h1 / 10000
         plt.stem(b1, prob)
-        plt.title('n-sided die')
-        plt.xlabel('Face rolled')
-        plt.ylabel('# of times rolling the face')
+        plt.title('N-Sided Die')
+        plt.xlabel('Die Number')
+        plt.ylabel('Probability')
         plt.show()
 
 
