@@ -32,28 +32,26 @@ def nSidedDie(p):  # same code from lab 1
             eList.append(d)
     return d
 
-def conditionalProb1(p,e0,e1):
+def conditionalProb2(p,e0,e1):
     succ =0
-    rec =0
+    rec = 0
 
-    for i in range(0, 100000):
-        s = nSidedDie([p, 1 - p])
+    for i in range(0,100000):
+        s = nSidedDie([p, 1-p])
         s -= 1
 
-        if s == 1:
-            r = nSidedDie([e1,1-e1])
+        if s==1:
+            r = nSidedDie([e1, 1-e1])
             r -= 1
-            succ += 1
-
-            if r == 1:
-                rec += 1
-
         else:
             r = nSidedDie([1-e0,e0])
-            r -=1
+            r -= 1
+        if r ==1:
+            rec += 1
+            if s ==1:
+                succ += 1
 
-    conprob = rec / succ
-    return conprob
+    conProb = succ/ rec
+    return conProb
 
-
-print(conditionalProb1(.6,.05,.03))
+print(conditionalProb2(.6, .05, .03))
