@@ -58,4 +58,5 @@ def enhancedTransMethod(p,e0,e1):
     prob = (cnt / 100000)
     return prob
 
-print(enhancedTransMethod(.6,.05,.03))
+
+print(enhancedTransMethod(.6, .05, .03))
