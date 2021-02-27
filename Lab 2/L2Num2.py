@@ -36,7 +36,7 @@ def conditionalProb1(p,e0,e1):
     succ = 0
     rec = 0
 
-    for i in range(0, 100000):
+    for i in range(0, 100000):  # loop from 0 - 100,000
         S = nSidedDie([p, 1 - p])  # generating
         S = S - 1
 
@@ -52,7 +52,7 @@ def conditionalProb1(p,e0,e1):
             R = nSidedDie([1-e0, e0])  # generating
             R = R - 1
 
-    conprob = rec / succ
+    conprob = rec / succ # this is to get probability
     return conprob
 
 

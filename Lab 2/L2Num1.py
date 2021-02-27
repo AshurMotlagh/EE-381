@@ -50,7 +50,7 @@ def erronrousTransmission(p, e0, e1):
         if R != S:
             cnt = cnt + 1  # updating the counter
 
-    prob = cnt / 100000  # getting the probability of errers
+    prob = cnt / 100000  # getting the probability of errors
     return prob
 
 print(erronrousTransmission(.6,.05,.03))
