@@ -33,25 +33,25 @@ def nSidedDie(p):  # same code from lab 1
     return d
 
 def conditionalProb2(p,e0,e1):
-    succ =0
+    succ = 0
     rec = 0
 
     for i in range(0,100000):
-        s = nSidedDie([p, 1-p])
-        s -= 1
+        S = nSidedDie([p, 1-p]) # generating
+        S = S - 1
 
-        if s==1:
-            r = nSidedDie([e1, 1-e1])
-            r -= 1
+        if S ==1:
+            R = nSidedDie([e1, 1-e1]) # generating
+            R = R - 1
         else:
-            r = nSidedDie([1-e0,e0])
-            r -= 1
-        if r ==1:
-            rec += 1
-            if s ==1:
-                succ += 1
+            R = nSidedDie([1-e0,e0]) # generating
+            R = R -1
+        if R == 1:
+            rec = rec + 1
+            if S == 1:
+                succ + succ + 1
 
-    conProb = succ/ rec
+    conProb = (succ / rec)
     return conProb
 
 print(conditionalProb2(.6, .05, .03))

@@ -37,7 +37,7 @@ def enhancedTransMethod(p,e0,e1):
     array = []
 
     for i in range(0,100000):
-        S = nSidedDie([p, 1-p])
+        S = nSidedDie([p, 1-p])  # generating
         S = S - 1
 
         if 1 == S:
@@ -48,14 +48,14 @@ def enhancedTransMethod(p,e0,e1):
         arraySum = sum(array)
 
         if arraySum >= 2:
-            decode = 1
+            temp = 1
         else:
-            decode = 0
+            temp = 0
 
-        if decode != S:
+        if temp != S:
             cnt = cnt + 1
 
-    prob = cnt / 100000
+    prob = (cnt / 100000)
     return prob
 
 print(enhancedTransMethod(.6,.05,.03))

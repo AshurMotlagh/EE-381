@@ -36,19 +36,19 @@ def erronrousTransmission(p, e0, e1):
     cnt = 0  # counter for the amount of errors need to calculate
 
     for i in range(0,100000):  # loop from 0 - 100,000
-        s = nSidedDie([p, 1 - p])  #
-        s -= 1
+        S = nSidedDie([p, 1 - p])  # generating (got from lab manual)
+        S = S - 1
 
-        if s == 1:
-            r = nSidedDie([1-e1, e1])
-            r -= 1
+        if S == 1:
+            R = nSidedDie([1-e1, e1])  # generating
+            R = R - 1
 
-        elif s == 0:
-            r = nSidedDie([1 - e0, e0])
-            r -= 1
+        elif S == 0:
+            R = nSidedDie([1 - e0, e0])  # generating
+            R = R - 1
 
-        if r != s:
-            cnt += 1  # updating the
+        if R != S:
+            cnt = cnt + 1  # updating the counter
 
     prob = cnt / 100000  # getting the probability of errers
     return prob
