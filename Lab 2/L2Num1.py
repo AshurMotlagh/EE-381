@@ -36,7 +36,7 @@ def erronrousTransmission(p, e0, e1):
     cnt = 0  # counter for the amount of errors need to calculate
 
     for i in range(0,100000):  # loop from 0 - 100,000
-        s = nSidedDie([p, 1 - p])
+        s = nSidedDie([p, 1 - p])  #
         s -= 1
 
         if s == 1:
