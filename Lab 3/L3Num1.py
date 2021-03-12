@@ -18,7 +18,7 @@ def experimentalBernoulliTrails(p):
                 X += 1  # so if this statement is true it counts as a success!!!
         x.append(X)
 
-    b = range(0, 20)
+    b = range(0, 15+2)
     sb = np.size(b)
     h1, bin_edges = np.histogram(x, bins=b)
     b1 = bin_edges[0:sb - 1]
