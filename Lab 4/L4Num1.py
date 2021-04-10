@@ -1,3 +1,5 @@
+# Ashur Motlagh
+# 018319910
 import numpy as np
 import matplotlib.pyplot as plt
 import math
@@ -65,9 +67,9 @@ def ERV(beta, n):
     plt.xlabel('T')
     plt.ylabel('PDF')
 
-    # PLOT THE UNIFORM PDF
+    # PLOT THE erv PDF
     def expPDF(beta, T):
-        f = ((1 / beta) * np.exp(-(1 / beta) * T)) * np.ones(np.size(T))
+        f = ((1 / beta) * np.exp(-(1 / beta) * T)) * np.ones(np.size(T))  # changed formula
         return f
 
     f = expPDF(beta, b1)
@@ -105,9 +107,9 @@ def NRV(mu, sigma, n):
     plt.xlabel('X')
     plt.ylabel('PDF')
 
-    # PLOT THE UNIFORM PDF
+    # PLOT THE nrv PDF
     def unifPDF(mu, sigma, X):
-        f = (1 / (sigma * math.sqrt(2 * math.pi))) * np.exp(-((X - mu) ** 2) / (2 * (sigma) ** 2)) * np.ones(np.size(X))
+        f = (1 / (sigma * math.sqrt(2 * math.pi))) * np.exp(-((X - mu) ** 2) / (2 * (sigma) ** 2)) * np.ones(np.size(X))  # changed formula
         return f
 
     f = unifPDF(mu, sigma, b1)
@@ -122,13 +124,6 @@ def NRV(mu, sigma, n):
     print('Standard deviation:', sig_x)
 
 
-a = 1.0
-b = 4.0
-n = 10000
-beta = 40
-mu = 2.5
-sigma = 0.75
-
-URV(a, b, n)
-ERV(beta, n)
-NRV(mu, sigma, n)
+URV(1.0,4.0, 100000)
+ERV(40, 10000)
+NRV(2.5, 0.75, 10000)
