@@ -1,55 +1,62 @@
+# Ashur Motlagh
+# 018319910
 import numpy as np
 import math
 import random
 
-def problem2(b, N, mu, trials, t95, t99, size):
-    successZ95 = 0  # Initialize variables.
-    successZ99 = 0
-    successT95 = 0
-    successT99 = 0
-    sample = size
 
-    for z in range(0, trials):
-        y = b[random.sample(range(N), sample)]
-        yMean = np.sum(y) / sample
+def problem2(sig, N, mu, trials, t95, t99, size):
+    NGD = np.random.normal(mu, sig, N)  # Normal Gaussian Distribution
+
+    success95 = 0  # Initialize variables.
+    success99 = 0
+    _success95 = 0  # for t
+    _success99 = 0  # for t
+
+    for i in range(0, trials):
+        x = NGD[random.sample(range(N), size)]  # size will change according to instructions
+        mean = np.sum(x) / size  # calculate mean
         total = 0
-        for a in range(0, len(y)):
-            total = total + (y[a] - yMean) ** 2
-        yS = total / (sample - 1)
-        yS = math.sqrt(yS)
-        yStd = yS / math.sqrt(sample)
+        for j in range(0, len(x)):
+            total = total + (x[j] - mean) ** 2
+        s = total / (size - 1)
+        s = math.sqrt(s)
+        std = s / math.sqrt(size)  # create / calculate standard deviation
 
-        yTop95 = yMean + 1.96 * yStd
-        yBottom95 = yMean - 1.96 * yStd
-        yTop99 = yMean + 2.58 * yStd
-        yBottom99 = yMean - 2.58 * yStd
+        # Normal
+        top95 = mean + 1.96 * std
+        bottom95 = mean - 1.96 * std
+        top99 = mean + 2.58 * std
+        bottom99 = mean - 2.58 * std
 
-        tTop95 = yMean + t95 * (yStd)
-        tBottom95 = yMean - t95 * (yStd)
-        tTop99 = yMean + t99 * (yStd)
-        tBottom99 = yMean - t99 * (yStd)
+        # Students t
+        _top95 = mean + t95 * std
+        _bottom95 = mean - t95 * std
+        _top99 = mean + t99 * std
+        _bottom99 = mean - t99 * std
 
-        if yBottom95 <= mu and yTop95 >= mu:
-            successZ95 += 1
-        if yBottom99 <= mu and yTop99 >= mu:
-            successZ99 += 1
-        if tBottom95 <= mu and tTop95 >= mu:
-            successT95 += 1
-        if tBottom99 <= mu and tTop99 >= mu:
-            successT99 += 1
+        # Success Counters for normal
+        if bottom95 <= mu <= top95:
+            success95 += 1
+        if bottom99 <= mu <= top99:
+            success99 += 1
 
-    print('Success Rate using normal, sample = %d,' % sample, '95% confidence interval')
-    print(successZ95 / trials * sample)
-    print('Success Rate using normal, sample = %d,' % sample, '99% confidence interval')
-    print(successZ99 / trials * sample)
-    print('Success Rate using student t, sample = %d,' % sample, '95% confidence interval')
-    print(successT95 / trials * sample)
-    print('Success Rate using student t, sample = %d,' % sample, '99% confidence interval')
-    print(successT99 / trials * sample)
-    print('')
+        # For Student's t
+        if _bottom95 <= mu <= _top95:
+            _success95 += 1
+        if _bottom99 <= mu <= _top99:
+            _success99 += 1
+
+    print("Success Rate using normal, size = ", size, " with 95% confidence interval")
+    print(success95 / trials * size)
+    print("Success Rate using normal, size = ", size, " with 99% confidence interval")
+    print(success99 / trials * size)
+    print("Success Rate using student t, size = ", size, " with 95% confidence interval")
+    print(_success95 / trials * size)
+    print("Success Rate using student t, size = ", size, " with 99% confidence interval")
+    print(_success99 / trials * size, "\n")
 
 
-B = np.random.normal(55, 5, 1500000)
-problem2(B, 1500000, 55, 10000, 2.78, 4.6, 5)
-problem2(B, 1500000, 55, 10000, 2.02, 2.7, 40)
-problem2(B, 1500000, 55, 10000, 1.98, 2.62, 120)
+problem2(5, 1500000, 55, 10000, 2.78, 4.6, 5)
+problem2(5, 1500000, 55, 10000, 2.02, 2.7, 40)
+problem2(5, 1500000, 55, 10000, 1.98, 2.62, 120)
