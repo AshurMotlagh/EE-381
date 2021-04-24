@@ -1,23 +1,23 @@
 import numpy as np
-import matplotlib.pyplot as plt
-import math as m
-import random as r
+import math
+import random
 
 def problem2(b, N, mu, trials, t95, t99, size):
-    successZ95 = 0
+    successZ95 = 0  # Initialize variables.
     successZ99 = 0
     successT95 = 0
     successT99 = 0
     sample = size
+
     for z in range(0, trials):
-        y = b[r.sample(range(N), sample)]
+        y = b[random.sample(range(N), sample)]
         yMean = np.sum(y) / sample
         total = 0
         for a in range(0, len(y)):
             total = total + (y[a] - yMean) ** 2
         yS = total / (sample - 1)
-        yS = m.sqrt(yS)
-        yStd = yS / m.sqrt(sample)
+        yS = math.sqrt(yS)
+        yStd = yS / math.sqrt(sample)
 
         yTop95 = yMean + 1.96 * yStd
         yBottom95 = yMean - 1.96 * yStd
@@ -48,12 +48,8 @@ def problem2(b, N, mu, trials, t95, t99, size):
     print(successT99 / trials * sample)
     print('')
 
-trials = 10000
-N = 1500000
-mu = 55
-sig = 5
-n = 200
-B = np.random.normal(mu, sig, N)
-problem2(B, N, mu, trials, 2.78, 4.6, 5)
-problem2(B, N, mu, trials, 2.02, 2.7, 40)
-problem2(B, N, mu, trials, 1.98, 2.62, 120)
+
+B = np.random.normal(55, 5, 1500000)
+problem2(B, 1500000, 55, 10000, 2.78, 4.6, 5)
+problem2(B, 1500000, 55, 10000, 2.02, 2.7, 40)
+problem2(B, 1500000, 55, 10000, 1.98, 2.62, 120)
