@@ -36,16 +36,16 @@ def enhancedTransMethod(p,e0,e1):
     cnt = 0
     array = []
 
-    for i in range(0,100000):
+    for i in range(0,100000):  # loop from 0 - 100,000
         S = nSidedDie([p, 1-p])  # generating
         S = S - 1
 
         if 1 == S:
-            array = [nSidedDie([e1, 1 - e1]) - 1, nSidedDie([e1, 1 - e1]) - 1, nSidedDie([e1, 1 - e1]) - 1]
+            array = [nSidedDie([e1, 1 - e1]) - 1, nSidedDie([e1, 1 - e1]) - 1, nSidedDie([e1, 1 - e1]) - 1]  # 3 bits
         if 0 == S:
             array = [nSidedDie([1 - e0, e0]) - 1, nSidedDie([1 - e0, e0]) - 1, nSidedDie([1 - e0, e0]) - 1]
 
-        arraySum = sum(array)
+        arraySum = sum(array)  # sum of the array
 
         if arraySum >= 2:
             temp = 1
@@ -53,10 +53,13 @@ def enhancedTransMethod(p,e0,e1):
             temp = 0
 
         if temp != S:
-            cnt = cnt + 1
+            cnt = cnt + 1  # ERROR!
 
     prob = (cnt / 100000)
     return prob
 
+print(enhancedTransMethod(.6,.05,.03))
 
-print(enhancedTransMethod(.6, .05, .03))
+'''
+this method is better since the probability of error is overly smaller (almost .01 rounded up)
+'''
