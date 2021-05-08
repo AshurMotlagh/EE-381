@@ -1,7 +1,8 @@
+# Ashur Motlagh
+# 018319910
 import numpy as np
 import matplotlib.pyplot as plt
 import random
-
 
 def nSidedDie(p):  # same code from lab 1
     listsum = 0
@@ -37,20 +38,20 @@ def nSidedDie(p):  # same code from lab 1
 def markov(n):
     S = []
     initial = [1 / 4, 0, 3 / 4]
-    stm1 = [1 / 2, 1 / 4, 1 / 4]
-    stm2 = [1 / 4, 1 / 8, 5 / 8]
-    stm3 = [1 / 3, 2 / 3, 0]
+    mat1 = [1 / 2, 1 / 4, 1 / 4]
+    mat2 = [1 / 4, 1 / 8, 5 / 8]
+    mat3 = [1 / 3, 2 / 3, 0]
     for i in range(n):
         r = nSidedDie(initial)
         S.append(r)
     print("Initial states", S)
     for k in range(1, n):
         if S[k - 1] == 0:
-            S[k] = nSidedDie(stm1)
+            S[k] = nSidedDie(mat1)
         elif S[k - 1] == 1:
-            S[k] = nSidedDie(stm2)
+            S[k] = nSidedDie(mat2)
         else:
-            S[k] = nSidedDie(stm3)
+            S[k] = nSidedDie(mat3)
     b = list(range(0, len(S)))
     print("Final states", S)
     plt.title("A sample simulation run of a three-state Markov Chain")
@@ -64,19 +65,19 @@ def markov(n):
 
 def markov_thousand(n, N):
     initial = [1 / 4, 0, 3 / 4]
-    stm1 = [1 / 2, 1 / 4, 1 / 4]
-    stm2 = [1 / 4, 1 / 8, 5 / 8]
-    stm3 = [1 / 3, 2 / 3, 0]
-    # stm1 = [1/2, 1/4, 1/4]
-    # stm2 = [1/2, 0, 1/2]
-    # stm3 = [1/4, 1/4, 1/2]
-    P = np.matrix([stm1, stm2, stm3])
+    mat1 = [1 / 2, 1 / 4, 1 / 4]
+    mat2 = [1 / 4, 1 / 8, 5 / 8]
+    mat3 = [1 / 3, 2 / 3, 0]
+    # mat1 = [1/2, 1/4, 1/4]
+    # mat2 = [1/2, 0, 1/2]
+    # mat3 = [1/4, 1/4, 1/2]
+    P = np.matrix([mat1, mat2, mat3])
     S = np.zeros((n, 3))
     S[0, :] = initial
     for i in range(1, n):
         S[i, :] = S[i - 1, :] * P
     b = list(range(0, n))
-    plt.plot(b, S[:, 0], 'b--*', label='Rain')
+    plt.plot(b, S[:, 0], 'b--*', label='Rain')  # got the name of the labels from prob 11 pdf
     plt.plot(b, S[:, 1], 'g--o', label='Nice')
     plt.plot(b, S[:, 2], 'r--h', label='Snow')
     plt.title("Three-state Markov Chain With State Transition Matrix")
@@ -95,11 +96,11 @@ def markov_thousand(n, N):
         for j in range(1, n):
             current = S[j - 1, i]
             if current == 0:
-                r = nSidedDie(stm1)
+                r = nSidedDie(mat1)
             elif current == 1:
-                r = nSidedDie(stm2)
+                r = nSidedDie(mat2)
             else:
-                r = nSidedDie(stm3)
+                r = nSidedDie(mat3)
             S[j, i] = r
 
     for j in range(0, n):

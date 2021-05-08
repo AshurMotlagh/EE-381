@@ -1,3 +1,5 @@
+# Ashur Motlagh
+# 018319910
 import numpy as np
 import matplotlib.pyplot as plt
 import random
@@ -35,25 +37,22 @@ def nSidedDie(p):  # same code from lab 1
 
 
 def GooglePageRank(n):
-    stm0 = [0, 1, 0, 0, 0]          # A
-    stm1 = [0.5, 0, 0.5, 0, 0]      # B
-    stm2 = [1/3, 1/3, 0, 0, 1/3]    # C
-    stm3 = [1, 0, 0, 0, 0]          # D
-    stm4 = [0, 1/3, 1/3, 1/3, 0]    # E
-    P = np.matrix([stm0, stm1, stm2, stm3, stm4])  # make into matrix
+    mat0 = [0, 1, 0, 0, 0]          # A
+    mat1 = [0.5, 0, 0.5, 0, 0]      # B
+    mat2 = [1/3, 1/3, 0, 0, 1/3]    # C
+    mat3 = [1, 0, 0, 0, 0]          # D
+    mat4 = [0, 1/3, 1/3, 1/3, 0]    # E
+    P = np.matrix([mat0, mat1, mat2, mat3, mat4])  # make into matrix
 
     V = [[1/5, 1/5, 1/5, 1/5, 1/5], [0, 0, 0, 0, 1]]  # Define initial
 
     for i in range(2):
-        transposed = np.transpose(V[i])
         P2 = V[i]
         temp = [V[i]]
-
         for num in range(n):
             P2 = np.matmul(P2,P)
             metadata = P2.tolist()[0]
             temp.append(metadata)
-
         data = np.transpose(temp).tolist()
         plt.figure("2")
         plt.title("Calculated Five-state Markov State with initial vector: '{}'".format(V[i]))

@@ -1,3 +1,5 @@
+# Ashur Motlagh
+# 018319910
 import numpy as np
 import matplotlib.pyplot as plt
 import random
@@ -35,11 +37,11 @@ def nSidedDie(p):  # same code from lab 1
 def drunkardWalk(n):
     S = []  # empty list
     initial = [0, 1/3, 1/3, 1/3, 0]
-    stm0 = [1, 0, 0, 0, 0]
-    stm1 = [0.3, 0, 0.7, 0, 0]
-    stm2 = [0, 0.5, 0, 0.5, 0]
-    stm3 = [0, 0, 0.6, 0, 0.4]
-    stm4 = [0, 0, 0, 0, 1]
+    mat0 = [1, 0, 0, 0, 0]
+    mat1 = [0.3, 0, 0.7, 0, 0]
+    mat2 = [0, 0.5, 0, 0.5, 0]
+    mat3 = [0, 0, 0.6, 0, 0.4]
+    mat4 = [0, 0, 0, 0, 1]
 
 
     for i in range(n):
@@ -49,15 +51,15 @@ def drunkardWalk(n):
 
     for k in range(1, n):
         if S[k - 1] == 0:
-            S[k] = nSidedDie(stm0)
+            S[k] = nSidedDie(mat0)
         elif S[k - 1] == 1:
-            S[k] = nSidedDie(stm1)
+            S[k] = nSidedDie(mat1)
         elif S[k - 1] == 2:
-            S[k] = nSidedDie(stm2)
+            S[k] = nSidedDie(mat2)
         elif S[k - 1] == 3:
-            S[k] = nSidedDie(stm3)
+            S[k] = nSidedDie(mat3)
         else:
-            S[k] = nSidedDie(stm4)
+            S[k] = nSidedDie(mat4)
 
     print("Final states:", S)
     b = list(range(0, len(S)))

@@ -1,3 +1,5 @@
+# Ashur Motlagh
+# 018319910
 import numpy as np
 import random
 
@@ -29,41 +31,43 @@ def nSidedDie(p):  # same code from lab 1
                 if r > sp[j] and r <= sp[j + 1]:
                     d = j + 1
             eList.append(d)
-    return d -1
+    return d - 1
+
 
 def ProbAbsorption(N, n):
     temp1 = 0
     temp2 = 0
     S = []
     initial = [0, 0, 1, 0, 0]
-    stm0 = [1, 0, 0, 0, 0]
-    stm1 = [0.3, 0, 0.7, 0, 0]
-    stm2 = [0, 0.5, 0, 0.5, 0]
-    stm3 = [0, 0, 0.6, 0, 0.4]
-    stm4 = [0, 0, 0, 0, 1]
+    mat0 = [1, 0, 0, 0, 0]
+    mat1 = [0.3, 0, 0.7, 0, 0]
+    mat2 = [0, 0.5, 0, 0.5, 0]
+    mat3 = [0, 0, 0.6, 0, 0.4]
+    mat4 = [0, 0, 0, 0, 1]
+
     for i in range(N):
         for j in range(n):
             r = nSidedDie(initial)
             S.append(r)
         for k in range(1, n): # using nSidedDie
             if S[k - 1] == 0:
-                S[k] = nSidedDie(stm0)
+                S[k] = nSidedDie(mat0)
             elif S[k - 1] == 1:
-                S[k] = nSidedDie(stm1)
+                S[k] = nSidedDie(mat1)
             elif S[k - 1] == 2:
-                S[k] = nSidedDie(stm2)
+                S[k] = nSidedDie(mat2)
             elif S[k - 1] == 3:
-                S[k] = nSidedDie(stm3)
+                S[k] = nSidedDie(mat3)
             else:
-                S[k] = nSidedDie(stm4)
+                S[k] = nSidedDie(mat4)
 
         if 4 in S:
             temp1 += 1
         elif 0 in S:
-            temp2+= 1
+            temp2 += 1
         S = []
-    print("P(ending at b_20) = ", temp1 / N)
-    print("P(ending at b_24) = ", temp2 / N)
+    print("b_20 = ", temp1 / N)
+    print("b_24 = ", temp2 / N)
 
 
 ProbAbsorption(10000,15)
