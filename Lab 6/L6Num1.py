@@ -2,6 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import random
 
+
 def nSidedDie(p):  # same code from lab 1
     listsum = 0
     length = len(p)
@@ -30,15 +31,16 @@ def nSidedDie(p):  # same code from lab 1
                 if r > sp[j] and r <= sp[j + 1]:
                     d = j + 1
             eList.append(d)
-    return d -1
+    return d - 1
+
 
 def markov(n):
     S = []
-    initial = [1/4, 0, 3/4]
-    stm1 = [1/2, 1/4, 1/4]
-    stm2 = [1/4, 1/8, 5/8]
-    stm3 = [1/3, 2/3, 0]
-    for i in range(n):  # 15 steps
+    initial = [1 / 4, 0, 3 / 4]
+    stm1 = [1 / 2, 1 / 4, 1 / 4]
+    stm2 = [1 / 4, 1 / 8, 5 / 8]
+    stm3 = [1 / 3, 2 / 3, 0]
+    for i in range(n):
         r = nSidedDie(initial)
         S.append(r)
     print("Initial states", S)
@@ -60,19 +62,19 @@ def markov(n):
     plt.show()
 
 
-def markov_thousand(n ,N):
-    initial = [1/4, 0, 3/4]
-    stm1 = [1/2, 1/4, 1/4]
-    stm2 = [1/4, 1/8, 5/8]
-    stm3 = [1/3, 2/3, 0]
+def markov_thousand(n, N):
+    initial = [1 / 4, 0, 3 / 4]
+    stm1 = [1 / 2, 1 / 4, 1 / 4]
+    stm2 = [1 / 4, 1 / 8, 5 / 8]
+    stm3 = [1 / 3, 2 / 3, 0]
     # stm1 = [1/2, 1/4, 1/4]
     # stm2 = [1/2, 0, 1/2]
     # stm3 = [1/4, 1/4, 1/2]
     P = np.matrix([stm1, stm2, stm3])
     S = np.zeros((n, 3))
     S[0, :] = initial
-    for k in range(1, n):
-        S[k, :] = S[k - 1, :] * P
+    for i in range(1, n):
+        S[i, :] = S[i - 1, :] * P
     b = list(range(0, n))
     plt.plot(b, S[:, 0], 'b--*', label='Rain')
     plt.plot(b, S[:, 1], 'g--o', label='Nice')
@@ -85,29 +87,30 @@ def markov_thousand(n ,N):
 
     M = np.zeros((n, 3))
     S = np.array(np.zeros((n, N)))
-    for k in range(0, N):
+    for i in range(0, N):
         r = nSidedDie(initial)
-        S[0, k] = r
+        S[0, i] = r
 
-    for k in range(0, N):
+    for i in range(0, N):
         for j in range(1, n):
-            current = S[j - 1, k]
-            if current  == 0:
+            current = S[j - 1, i]
+            if current == 0:
                 r = nSidedDie(stm1)
-            elif current  == 1:
+            elif current == 1:
                 r = nSidedDie(stm2)
             else:
                 r = nSidedDie(stm3)
-            S[j, k] = r
+            S[j, i] = r
+
     for j in range(0, n):
         u = S[j, :]
         r = 0
         n = 0
         s = 0
-        for k in range(0, N):
-            if u[k] == 0:
+        for i in range(0, N):
+            if u[i] == 0:
                 r += 1
-            elif u[k] == 1:
+            elif u[i] == 1:
                 n += 1
             else:
                 s += 1

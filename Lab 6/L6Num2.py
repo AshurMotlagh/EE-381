@@ -31,7 +31,7 @@ def nSidedDie(p):  # same code from lab 1
                 if r > sp[j] and r <= sp[j + 1]:
                     d = j + 1
             eList.append(d)
-    return d -1
+    return d - 1
 
 
 def GooglePageRank(n):
@@ -40,31 +40,31 @@ def GooglePageRank(n):
     stm2 = [1/3, 1/3, 0, 0, 1/3]    # C
     stm3 = [1, 0, 0, 0, 0]          # D
     stm4 = [0, 1/3, 1/3, 1/3, 0]    # E
-    P = np.matrix([stm0, stm1, stm2, stm3, stm4])
+    P = np.matrix([stm0, stm1, stm2, stm3, stm4])  # make into matrix
 
-    V = [[1/5, 1/5, 1/5, 1/5, 1/5], [0, 0, 0, 0, 1]] # Define initial
+    V = [[1/5, 1/5, 1/5, 1/5, 1/5], [0, 0, 0, 0, 1]]  # Define initial
 
     for i in range(2):
         transposed = np.transpose(V[i])
         P2 = V[i]
-        bigList = [V[i]]
+        temp = [V[i]]
 
         for num in range(n):
             P2 = np.matmul(P2,P)
-            stepData = P2.tolist()[0]
-            bigList.append(stepData)
+            metadata = P2.tolist()[0]
+            temp.append(metadata)
 
-        data = np.transpose(bigList).tolist()
+        data = np.transpose(temp).tolist()
         plt.figure("2")
-        plt.title("Google Page Rank with initial vector: '{}'".format(V[i]))
-        plt.xlabel("Chain Position")
-        plt.ylabel("State")
+        plt.title("Calculated Five-state Markov State with initial vector: '{}'".format(V[i]))
+        plt.xlabel("Step Number")
+        plt.ylabel("Probability")
         x = range(n+1)
-        plt.plot(x,data[0],'ko',LINESTYLE='--',label='A')
-        plt.plot(x,data[1],'bo',LINESTYLE='--',label='B')
-        plt.plot(x,data[2],'go',LINESTYLE='--',label='C')
-        plt.plot(x,data[3],'yo',LINESTYLE='--',label='D')
-        plt.plot(x,data[4],'ro',LINESTYLE='--',label='E')
+        plt.plot(x,data[0],'ko',LINESTYLE='--', label='A')
+        plt.plot(x,data[1],'bo',LINESTYLE='--', label='B')
+        plt.plot(x,data[2],'go',LINESTYLE='--', label='C')
+        plt.plot(x,data[3],'yo',LINESTYLE='--', label='D')
+        plt.plot(x,data[4],'ro',LINESTYLE='--', label='E')
         plt.legend(loc='upper right')
         plt.show()
 

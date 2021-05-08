@@ -46,6 +46,7 @@ def drunkardWalk(n):
         r = nSidedDie(initial)
         S.append(r)
     print("Initial states:", S)
+
     for k in range(1, n):
         if S[k - 1] == 0:
             S[k] = nSidedDie(stm0)
@@ -57,6 +58,7 @@ def drunkardWalk(n):
             S[k] = nSidedDie(stm3)
         else:
             S[k] = nSidedDie(stm4)
+
     print("Final states:", S)
     b = list(range(0, len(S)))
     plt.title("A sample simulation run of Drunkard's Walk")

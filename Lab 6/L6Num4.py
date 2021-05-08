@@ -32,6 +32,8 @@ def nSidedDie(p):  # same code from lab 1
     return d -1
 
 def ProbAbsorption(N, n):
+    temp1 = 0
+    temp2 = 0
     S = []
     initial = [0, 0, 1, 0, 0]
     stm0 = [1, 0, 0, 0, 0]
@@ -39,12 +41,11 @@ def ProbAbsorption(N, n):
     stm2 = [0, 0.5, 0, 0.5, 0]
     stm3 = [0, 0, 0.6, 0, 0.4]
     stm4 = [0, 0, 0, 0, 1]
-    z, f = 0, 0
     for i in range(N):
         for j in range(n):
             r = nSidedDie(initial)
             S.append(r)
-        for k in range(1, n):
+        for k in range(1, n): # using nSidedDie
             if S[k - 1] == 0:
                 S[k] = nSidedDie(stm0)
             elif S[k - 1] == 1:
@@ -57,12 +58,12 @@ def ProbAbsorption(N, n):
                 S[k] = nSidedDie(stm4)
 
         if 4 in S:
-            z += 1
+            temp1 += 1
         elif 0 in S:
-            f += 1
+            temp2+= 1
         S = []
-    print("P(ending at b_20) = ", z / N)
-    print("P(ending at b_24) = ", f / N)
+    print("P(ending at b_20) = ", temp1 / N)
+    print("P(ending at b_24) = ", temp2 / N)
 
 
 ProbAbsorption(10000,15)
